@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js",
     "build": "rm -rf dist && NODE_ENV=production webpack --config build/webpack.prod.conf.js",
     "test": "jest",
-    "yarn netlify:deploy": "netlify deploy --dir=./dist -p -m \"$(git log -1 --pretty=%B)\""
+    "netlify:deploy": "netlify deploy --dir=./dist -p -m \"$(git log -1 --pretty=%B)\""
   },
   "dependencies": {
     "antd": "^3.16.2",
