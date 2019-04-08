@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from 'antd'
-import { hot } from 'react-hot-loader/root'
 
 const Hello = () => {
 	return (
@@ -13,4 +12,4 @@ const Hello = () => {
 	)
 }
 
-export default hot(Hello)
+export default Hello

@@ -1,16 +1,20 @@
 const base = require('./webpack.base.conf')
 const merge = require('webpack-merge')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const {resolve} = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
+const {
+  resolve
+} = require('path')
 
 module.exports = merge(base, {
   output: {
-    path: '/dist/',
+    path: resolve(__dirname, '../dist/'),
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].js',
+    publicPath: '/dist/',
   },
   optimization: {
+    minimize: true,
     runtimeChunk: true,
     namedChunks: true,
     moduleIds: 'hashed',
@@ -31,22 +35,23 @@ module.exports = merge(base, {
         commons: {
           name: 'chunk-commons',
           test: resolve(__dirname, '../src/components'),
-          minChunks: 3, // 最小公用次数
+          minChunks: 2, // 最小公用次数
           priority: 5,
           reuseExistingChunk: true,
         },
       },
     },
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          mangle: {
-            safari10: true,
-          },
-        },
-        sourceMap: false,
+      new TerserPlugin({
         cache: true,
         parallel: true,
+        sourceMap: true,
+        terserOptions: {
+          compress: true,
+          comments: false,
+          sourceMap: true,
+          minimize: true
+        }
       }),
       new OptimizeCSSAssetsPlugin(),
     ],
