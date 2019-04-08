@@ -1,4 +1,4 @@
-# a react project with typescript
+# a react project with typescript [![CircleCI](https://circleci.com/gh/sonacy/react-ts-antd.svg?style=svg)](https://circleci.com/gh/sonacy/react-ts-antd)
 
 ## webpack
 
